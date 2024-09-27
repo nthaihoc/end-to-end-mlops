@@ -1,14 +1,23 @@
 artifacts_root: artifacts
 
+list_folder_name: ["train", "dev", "test"]
+list_label_name : ["ASC_H", "ASC_US", "HSIL", "LSIL", "SCC"]
+
 data_ingestion:
   root_dir: artifacts/data_ingestion
   data_URL: https://drive.google.com/file/d/1Uv2r0_5ccpDIYdMz3z_Fk0OHbZ6Z-axI/view?usp=sharing
   local_data_file: artifacts/data_ingestion/data_final.zip
   unzip_dir: artifacts/data_ingestion
 
-pre_model:
+prepare_and_train_model:
   root_dir: artifacts/model
-  base_model_dir: artifacts/model/model_train.keras
   data_dir: artifacts/data_ingestion/dataset_final
+  model_train_dir: artifacts/model/model_train.keras
+  model_trained_dir: artifacts/model/model_trained.keras
 
-
+evaluate_model:
+  test_data_path: artifacts/data_ingestion/dataset_final
+  folder_name: ["test"]
+  label_name : ["ASC_H", "ASC_US", "HSIL", "LSIL", "SCC"]
+  mlflow_uri : https://dagshub.com/nthaihoc/end-to-end-mlops.mlflow
+  model_trained_dir: artifacts/model/model_trained.keras

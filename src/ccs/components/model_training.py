@@ -45,12 +45,18 @@ class TrainingModel:
         dev = dev_datagen.flow(x_dev ,y_dev, batch_size=self.config.batch_size)
         logger.info("Data Augumentation Sucessfully")
 
-        self.model = tf.keras.models.load_model(self.config.model_trained_dir)
+        self.model = tf.keras.models.load_model(self.config.model_train_dir)
        
-        history = self.model.fit(x=train,
-                                 validation_data=dev,
-                                 epochs=self.config.epochs,
-                                 shuffle=True)
+        self.model.fit(x=train,
+                       validation_data=dev,
+                       epochs=self.config.epochs,
+                       shuffle=True)
+    
+        self.save_model(self.config.model_trained_dir, self.model)
+
+    @staticmethod
+    def save_model(path: Path, model=tf.keras.Model):
+        model.save(path)
         
 def data_processing(path_root: Path, path_chil: list, path_chil_label: list):
     X_full = []

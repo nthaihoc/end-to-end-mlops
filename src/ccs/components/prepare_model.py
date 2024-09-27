@@ -18,7 +18,8 @@ class PrepareModel:
         )
 
     @staticmethod
-    def pre_trained_model(model, output, learning_rate, beta_1, beta_2, weight_decay):
+    def pre_trained_model(model, output, learning_rate, 
+                          beta_1, beta_2, weight_decay):
 
         model.trainable=False
         x = tf.keras.layers.Conv2D(64, (3, 3),
@@ -62,9 +63,9 @@ class PrepareModel:
             weight_decay=self.config.decay
         )
 
-        save_model(self.config.base_model_dir, self.full_model)
+        self.save_model(self.config.base_model_dir, self.full_model)
 
-
-def save_model(path: Path, model=tf.keras.Model):
-    model.save(path)
+    @staticmethod
+    def save_model(path: Path, model=tf.keras.Model):
+        model.save(path)
 

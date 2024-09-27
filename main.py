@@ -2,9 +2,9 @@ from ccs import logger
 from ccs.pipeline.stage_01_data_ingestion import DataIngestionPipeline
 from ccs.pipeline.stage_02_prepare_model import PrepareModelPipeline
 from ccs.pipeline.stage_03_training_model import TrainModelPipeline
+from ccs.pipeline.stage_04_evaluate_model import EvaluateModelPipeline
 from PIL import Image
 import os
-from tqdm.notebook import tqdm
 import numpy as np
 from pathlib import Path
 
@@ -38,4 +38,15 @@ try:
 except Exception as e:
     logger.exception(e)
     raise e
+
+STAGE_NAME = "Evaluate Model"
+try:
+    logger.info(f">>>>> stage {STAGE_NAME} started <<<<<")
+    evaluation_model = EvaluateModelPipeline()
+    evaluation_model.main()
+    logger.info(f">>>>> stage {STAGE_NAME} completed <<<<<")
+except Exception as e:
+    logger.exception(e)
+    raise e
+
 

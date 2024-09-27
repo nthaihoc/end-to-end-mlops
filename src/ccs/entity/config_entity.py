@@ -24,8 +24,18 @@ class PrepareModelConfig:
 @dataclass(frozen=True)
 class TrainingModelConfig:
     root_dir: Path
+    model_train_dir: Path
     model_trained_dir: Path
     epochs: int
     list_folder_name: list
     list_label_name : list
     batch_size: int
+
+@dataclass(frozen=True)
+class EvaluateModelConfig:
+    model_trained_dir: Path
+    all_param: dict
+    mlflow_uri: str
+    test_data_path: Path
+    foler_name: list
+    label_name: list
