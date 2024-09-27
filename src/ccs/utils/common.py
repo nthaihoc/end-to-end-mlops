@@ -1,7 +1,7 @@
 import os
 from box.exceptions import BoxValueError
 import yaml
-from src.ccs import logger
+from ccs import logger
 import json
 import joblib
 from ensure import ensure_annotations
@@ -12,9 +12,6 @@ import base64
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
-    """
-
-    """
     try:
         with open(path_to_yaml) as yaml_file:
             content = yaml.safe_load(yaml_file)
@@ -70,8 +67,4 @@ def decodeImage(imgstring, fileName):
 def encodeImagetoBase64(croppedImagePath):
     with open(croppedImagePath, "rb") as f:
         return base64.b64encode(f.read())
-
-
-        
-        
-                        
+    

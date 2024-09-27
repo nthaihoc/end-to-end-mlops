@@ -1,0 +1,14 @@
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  data_URL: https://drive.google.com/file/d/1Uv2r0_5ccpDIYdMz3z_Fk0OHbZ6Z-axI/view?usp=sharing
+  local_data_file: artifacts/data_ingestion/data_final.zip
+  unzip_dir: artifacts/data_ingestion
+
+pre_model:
+  root_dir: artifacts/model
+  base_model_dir: artifacts/model/model_train.keras
+  data_dir: artifacts/data_ingestion/dataset_final
+
+
