@@ -1,0 +1,36 @@
+stages:
+  data_ingestion:
+    cmd: python3 src/ccs/pipeline/stage_01_data_ingestion.py
+    deps:
+      - src/ccs/pipeline/stage_01_data_ingestion.py
+      - config/config.yaml
+    outs:
+      - artifacts/data_ingestion/dataset_final
+    
+  prepared_model:
+    cmd: python3 src/ccs/pipeline/stage_02_prepare_model.py
+    deps:
+      - src/ccs/pipeline/stage_02_prepare_model.py
+      - config/config.yaml
+      - params.yaml
+    outs:
+      - artifacts/model/model_train.keras
+  
+  training_model:
+    cmd: python3 src/ccs/pipeline/stage_03_training_model.py
+    deps:
+      - src/ccs/pipeline/stage_03_training_model.py
+      - config/config.yaml
+      - params.yaml
+    outs:
+      - artifacts/model/model_trained.keras
+    
+  evaluate_model:
+    cmd: python3 src/ccs/pipeline/stage_04_evaluate_model.py
+    deps:
+      - src/ccs/pipeline/stage_04_evaluate_model.py
+      - config/config.yaml
+      - params.yaml
+    outs:
+      - scores.json:
+          cache: false

@@ -1,0 +1,79 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python3 src/ccs/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 9380aa36e63440ed993bb48e759891e3
+      size: 873
+    - path: src/ccs/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: 37148056a99fe2812e148b0fc6dc6ee2
+      size: 851
+    outs:
+    - path: artifacts/data_ingestion/dataset_final
+      hash: md5
+      md5: fb8c0835550d475bdc6d20ac00304272.dir
+      size: 2402769676
+      nfiles: 22434
+  prepared_model:
+    cmd: python3 src/ccs/pipeline/stage_02_prepare_model.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 9380aa36e63440ed993bb48e759891e3
+      size: 873
+    - path: params.yaml
+      hash: md5
+      md5: 5ebd37d7e1d428cf2d85caa6dcc4edcc
+      size: 161
+    - path: src/ccs/pipeline/stage_02_prepare_model.py
+      hash: md5
+      md5: a72369570adbf3cfd71d5333702bc6d5
+      size: 838
+    outs:
+    - path: artifacts/model/model_train.keras
+      hash: md5
+      md5: d796e2658891a6255829c3ebd397f8e1
+      size: 13075888
+  training_model:
+    cmd: python3 src/ccs/pipeline/stage_03_training_model.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 9380aa36e63440ed993bb48e759891e3
+      size: 873
+    - path: params.yaml
+      hash: md5
+      md5: 5ebd37d7e1d428cf2d85caa6dcc4edcc
+      size: 161
+    - path: src/ccs/pipeline/stage_03_training_model.py
+      hash: md5
+      md5: 422dac12a5b9a82823d9dba7d97e8fd6
+      size: 776
+    outs:
+    - path: artifacts/model/model_trained.keras
+      hash: md5
+      md5: b29e93b9d809808ddda2c1c6b67252ee
+      size: 19985337
+  evaluate_model:
+    cmd: python3 src/ccs/pipeline/stage_04_evaluate_model.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 9380aa36e63440ed993bb48e759891e3
+      size: 873
+    - path: params.yaml
+      hash: md5
+      md5: 5ebd37d7e1d428cf2d85caa6dcc4edcc
+      size: 161
+    - path: src/ccs/pipeline/stage_04_evaluate_model.py
+      hash: md5
+      md5: 0ebd6a6f0bba907b99a0e3441095ce66
+      size: 873
+    outs:
+    - path: scores.json
+      hash: md5
+      md5: 4d86cd8e65758898762a8f7ee4c21910
+      size: 79

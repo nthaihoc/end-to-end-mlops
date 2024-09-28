@@ -2,7 +2,7 @@ from ccs.config.configuration import ConfigurationManager
 from ccs.components.data_ingestion import DataIngestion
 from ccs import logger
 
-STAGE_NAME = "Data Ingestion"
+STAGE_NAME = "DATA INGESTION"
 
 class DataIngestionPipeline:
     def __init__(self):
@@ -17,10 +17,10 @@ class DataIngestionPipeline:
 
 if __name__ == "__main__":
     try:
-        logger.info(f">>>>> Stage {STAGE_NAME} started <<<<<")
+        logger.info(f">>>>>> Stage {STAGE_NAME} started <<<<<<")
         data_ingestion = DataIngestionPipeline()
         data_ingestion.main()
-        logger.info(f">>>>> Stage {STAGE_NAME} completed <<<<<")
+        logger.info(f">>>>>> Stage {STAGE_NAME} completed <<<<<<\n\n x============x")
     except Exception as e:
         logger.exception(e)
         raise e
