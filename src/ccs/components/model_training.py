@@ -22,15 +22,15 @@ class TrainingModel:
         x_train, x_dev, x_test = (img_size(X_train[:100]),
                                   img_size(X_dev[:100]),
                                   img_size(X_test[:100]))
-        logger.info("Resize Image and Convert Matrix Sucessfully")
+        logger.info("Resize Image and Convert Matrix Successfully")
 
         logger.info("OneHotEncoder Label")
         y_train, y_dev, y_test = (encoder(Y_train[:100]),
                                   encoder(Y_dev[:100]),
                                   encoder(Y_test[:100]))
-        logger.info("OneHotEncoder Label Sucessfully")
+        logger.info("OneHotEncoder Label Successfully")
 
-        logger.info("Data Augumentation Processing")
+        logger.info("Data Augmentation Processing")
         train_datagen = ImageDataGenerator(rotation_range = 40,
                                    width_shift_range = 0.2,
                                    height_shift_range = 0.2,
@@ -43,7 +43,7 @@ class TrainingModel:
         train =  train_datagen.flow(x_train, y_train, batch_size=self.config.batch_size)
     
         dev = dev_datagen.flow(x_dev ,y_dev, batch_size=self.config.batch_size)
-        logger.info("Data Augumentation Sucessfully")
+        logger.info("Data Augmentation Successfully")
 
         self.model = tf.keras.models.load_model(self.config.model_train_dir)
        

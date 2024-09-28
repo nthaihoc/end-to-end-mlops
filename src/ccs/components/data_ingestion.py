@@ -8,7 +8,7 @@ from ccs.config.configuration import DataIngestionConfig
 class DataIngestion:
     def __init__(self, config: DataIngestionConfig):
         self.config = config
-
+    
     def download_file(self) -> str:
 
         try:
@@ -23,10 +23,9 @@ class DataIngestion:
             logger.info(f"Downloaded data from {dataset_url} into file {zip_download_dir}")
 
         except Exception as e:
-            raise e
+                raise e
     
     def extract_zip_file(self):
         unzip_path = self.config.unzip_dir
         with zipfile.ZipFile(self.config.local_data_file, "r") as zip_ref:
             zip_ref.extractall(unzip_path)
-
